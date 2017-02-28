@@ -1,0 +1,20 @@
+.table > thead > tr > th {border-bottom: 1px solid #ddd}
+#msgSuccess, #msgSuccessFavoris{text-align: center;font-family: monospace;color: green;}
+#aucunFav{text-align: center;font-family: monospace;color: red;}
+.add-contact{background-image: url('../images/addcontact.png');display: block;background-repeat: no-repeat;height: 44px;background-position: center;}
+.info-contact{background-image: url('../images/contact.png');display: block;background-repeat: no-repeat;height: 44px;background-position: center;}
+.logo-favoris{background-image: url('../images/favoris.png');display: block;background-repeat: no-repeat;height: 44px;background-position: center;}
+.ajout{border: 1px solid gray;border-radius: 4px;padding: 30px 45px;display: none}
+.ajout h2{margin-top: 0;}
+#erreurNom, #erreurPrenom, #erreurTel, #erreurEmail, #erreurNumTel, #erreurChiffre, #erreurValidEmail{color: red;font-size: 17px; display: none;}
+h2{text-align: center;color: gray;font-size: 15px !important;}
+.modal-title{text-align: center;}
+#nbrContact{color: gray;font-size: 15px;}
+.btn-success, .btn-warning, .btn-danger {width:90%}
+.contacts {padding: 0px 20px;border: 1px solid gray;
+	border-radius: 5px;display: none}
+.favoris{padding: 0px 20px;border: 1px solid gray;border-radius: 5px;display: none}
+.active{background: #ccc};
+#linkAjoutContact, #linkContact, #linkFav{padding: 0;}
+#navBar{width: 50%;}
+#ajoutContact, #contacts, #favoris{width: 50%;}

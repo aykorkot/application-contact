@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Contacts</title>
+		
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.css" /> 
+		<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.css">
+		
+		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+			
+	</head>
+<body>
+	<div id="navBar" class="btn-group btn-group-justified" role="group" aria-label="...">
+	  <div class="btn-group" role="group" id="linkAjoutContact">
+	    <button type="button" class=" btn btn-default" id="btnActiveAjContact"><a href="" class="add-contact"></a></button>
+	  </div>
+	  <div class=" btn-group" role="group" id="linkContact">
+	    <button type="button" class="active btn btn-default" id="btnActiveContact" ><a href="" class="info-contact"></a></button>
+	  </div>
+	  <div class="btn-group" role="group" id="linkFav">
+	    <button type="button" class=" btn btn-default" id="btnActiveFavoris"><a href="" class="logo-favoris"></a></button>
+	  </div>
+	</div>	
+	<div>
+		<div class="ajout form-group" id="ajoutContact">
+			<h2>Nouveau contact</h2>
+			<div id="msgSuccess"></div>
+			<label for="nom">Nom</label>
+			<input type="text" class="form-control" id="nom" placeholder="Nom">
+			<span id="erreurNom">Veuillez saisir votre nom</span>
+			<br />
+			<label for="prenom">Prénom</label>
+			<input type="text" class="form-control" id="prenom" placeholder="Prénom">
+			<span id="erreurPrenom">Veuillez saisir votre prenom</span>
+			<br />
+			<label for="telephone">Téléphone</label>
+			<input type="text" class="form-control" id="telephone" placeholder="Téléphone">
+			<span id="erreurTel">Le téléphone est nécessaire </span>
+			<span id="erreurNumTel">Le champs téléphone nécessite juste des numéros</span>
+			<span id="erreurChiffre">Assurez-vous de rentrer un numéro à 10 chiffres</span>
+			<br />
+			<label for="email">Email</label>
+			<input type="text" class="form-control" id="email" placeholder="Email">
+			<span id="erreurEmail">Entrer une adresse email</span>
+			<span id="erreurValidEmail">L'email n'est pas valide</span>
+			<br />
+			<button type="button" class="btn btn-info" id="ajouter">Ajouter aux contacts</button>
+		</div>
+		<div class="contacts" id="contacts">
+		  <table class="table" id="table">
+		  	<h2><span id="nbrContact"></span> Contacts</h2>
+		  	<div id="msgSuccessFavoris" style="display:none;">Le contact a été mis en favoris</div>
+		    <thead>
+		      <tr>
+		        <th>ID</th>
+		        <th>Nom</th>
+		        <th>Prénom</th>
+		        <th id="infoTel">Téléphone</th>
+		        <th id="infoEmail" >Email</th>
+		      </tr>
+		    </thead>
+		    <tbody id="infoContact">
+		    
+		    </tbody>
+		  </table>
+		</div>
+		<div class="favoris" id="favoris">
+		  <table class="table" id="table2">
+		  	<h2><span id="nbrFavoris"></span> Favoris</h2>
+		  	<div id="aucunFav"></div>
+		    <thead>
+		      <tr>
+		        <th>Nom</th>
+		        <th>Prénom</th>
+		        <th>Téléphone</th>
+		        <th>Adresse email</th>
+		      </tr>
+		    </thead>
+		    <tbody id="infoFavoris">
+		   
+		    </tbody>
+		  </table>
+		</div>
+	</div>
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Informations du contact</h4>
+        </div>
+        <div class="modal-body">
+          	<table class="table" id="table">
+		    <thead>
+		      <tr>
+		        <th>Nom</th>
+		        <th>Prénom</th>
+		        <th>Téléphone</th>
+		        <th>Email</th>
+		      </tr>
+		    </thead>
+		    <tbody id="infoModalContact">
+		    
+		    </tbody>
+		  </table>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  
+<script type="text/javascript" src="js/jquery-3.1.1.js"></script> 
+<script type="text/javascript" src="js/functions.js"></script> 
+<script type="text/javascript" src="js/scripts.js"></script> 
+</body>
+</html>
