@@ -1,67 +1,4 @@
 
-// affichage des 4 contacts par défaut
-function defaultContact(tabContact){
-	var perso1 = {
-				kid : 1,
-				knom: "Ayman",
-				kprenom: "Korkot",
-				ktel: "0673160670",
-				kemail: "ayman.korkot@gmail.com"
-			};
-	var perso2 = {
-				kid : 2,
-				knom: "Ayoub",
-				kprenom: "Korkot",
-				ktel: "0673145670",
-				kemail: "ayoub.korkot@gmail.com"
-			};
-	var perso3 = {
-				kid : 3,
-				knom: "Anas",
-				kprenom: "Ahmed",
-				ktel: "0672560670",
-				kemail: "anas.Ahmed@gmail.com"
-			};
-	var perso4 = {
-				kid : 4,
-				knom: "Amin",
-				kprenom: "Badri",
-				ktel: "0673657670",
-				kemail: "Amin.Badri@gmail.com"
-			};
-
-	//remplissage tableau
-	arrayContacts.push(perso1);
-	arrayContacts.push(perso2);
-	arrayContacts.push(perso3);
-	arrayContacts.push(perso4);
-}
-
-
-// stockage du tableau
-function localStorage() {
-
-
-	/*localStorage.savedData = arrayContacts;
-	var foo = localStorage.savedData;*/
-
-	// local storage
-	var JSONreadyUsers = JSON.stringify(arrayContacts);
-	sessionStorage.setItem("arrayContacts", JSONreadyUsers);
-}
-
-// retrieving our data and converting it back into an array
-/*function getStorage() {
-	var jsonGetItem = sessionStorage.getItem("arrayContacts");
-	var monobjet = JSON.parse(jsonGetItem);
-	console.log(monobjet);
-
-	for(i=0; i < arrayContacts.length; i++) {
-       var ss =  sessionStorage.getItem("arrayContacts");
-       console.log(ss);
-    } 
-}*/
-
 // test si un id existe dans le tableau favoris
 function isExistInFavoris(id) {
 	
@@ -79,21 +16,12 @@ function isExistInFavoris(id) {
 
 // Fonction actualisation des donnés
 function refrechList() {
-	
-	// hide label tel et email
-	document.getElementById('infoTel').style.display="none";
-	document.getElementById('infoEmail').style.display="none";
+		
 	//rows table
 	var row = "";
 	
 	var tbody = document.getElementsByTagName('tbody')[0];
 
-	// get item from session storage
-	var jsonGetItem = sessionStorage.getItem("arrayContacts");
-	var monobjet = JSON.parse(jsonGetItem);
-	arrayContacts=monobjet;
-	
-	
 	// clear my tbody
 	tbody.innerHTML = "";
 	// add new content
@@ -126,9 +54,15 @@ function refrechList() {
 			 
 		row += "</tr>";
 	}
-	localStorage();
+	
 	tbody.innerHTML = row;
 	document.getElementById('nbrContact').innerHTML = arrayContacts.length;	
+		
+	// hide label tel et email
+	document.getElementById('infoTel').style.display="none";
+	document.getElementById('infoEmail').style.display="none";
+	
+	
 	return false;
 }
 
@@ -210,9 +144,12 @@ function supprimerContact(param_index) {
 
 	// refrech de la liste des contacts
 	refrechList();
-		
-	console.log(arrayContacts.length);
-	console.log("param index : " + param_index);
+	
+
+	// mettre le storage à jour	
+	setStorage();
+	
+	
 	return false;
 }
 
@@ -311,5 +248,14 @@ function clearInputs(){
 	document.getElementById('email').value="";	
 }
 
+// Fonction récupération storage session
+function loadStorage() {
+	var contactText = sessionStorage.getItem("arrayContacts");
+	arrayContacts = JSON.parse(contactText);
+}
 
-
+// Fonction alimentation storage
+function setStorage() {
+	var contactsText = JSON.stringify(arrayContacts);
+	sessionStorage.setItem("arrayContacts", contactsText);
+}

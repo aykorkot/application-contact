@@ -3,20 +3,18 @@
 var arrayContacts = [];
 var arrayFavContacts = [];
 
-// 4 contacts par défaut
-defaultContact(arrayContacts);
-
 /*localStorage.setItem("savedData", JSON.stringify([arrayContacts, arrayFavContacts ]));
 object1 = JSON.parse(localStorage.getItem("savedData"))[0];
 object2 = JSON.parse(localStorage.getItem("savedData"))[1];*/
 
 // Remplir la liste des contact au chargement de la page
 window.onload = function(){
+		
+	loadStorage();
 	
-	refrechList();
+	refrechList(); 
 	showPanel(2);
-
-	
+	 
 };
 
 
@@ -83,15 +81,17 @@ document.getElementById('ajouter').onclick = function () {
 			};
 		arrayContacts.push(cnt);
 		clearInputs();
-		//showSuccessMessage();
+	
+	
+		// Enregistrement dans la session storage
+		setStorage();
+
 		document.getElementById('msgSuccess').innerHTML = "Le contact a été bien ajouté";
 		// On l'efface 8 secondes plus tard
 		setTimeout(function() {
 		  document.getElementById('msgSuccess').innerHTML = "";
 		},2000);
 		
-		localStorage();
-		console.log(arrayContacts);
 	}
 	return false;
 };
