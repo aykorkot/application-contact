@@ -3,18 +3,14 @@
 var arrayContacts = [];
 var arrayFavContacts = [];
 
-/*localStorage.setItem("savedData", JSON.stringify([arrayContacts, arrayFavContacts ]));
-object1 = JSON.parse(localStorage.getItem("savedData"))[0];
-object2 = JSON.parse(localStorage.getItem("savedData"))[1];*/
 
 // Remplir la liste des contact au chargement de la page
 window.onload = function(){
-		
-	loadStorage();
 	
-	refrechList(); 
+	getStorageContact();
+	refrechList(); 	
+	getStorageFav();
 	showPanel(2);
-	 
 };
 
 
@@ -84,7 +80,7 @@ document.getElementById('ajouter').onclick = function () {
 	
 	
 		// Enregistrement dans la session storage
-		setStorage();
+		setStorageContact();
 
 		document.getElementById('msgSuccess').innerHTML = "Le contact a été bien ajouté";
 		// On l'efface 8 secondes plus tard
@@ -106,6 +102,7 @@ document.getElementById('linkAjoutContact').onclick = function(){
 //linkContact
 document.getElementById('linkContact').onclick = function(){
 	panelActive(2);
+		getStorageFav();
 	refrechList();
 	showPanel(2);
 

@@ -13,17 +13,17 @@ function isExistInFavoris(id) {
 	
 	return trouve;
 }
-
+	
 // Fonction actualisation des donnés
 function refrechList() {
-		
+	
 	//rows table
 	var row = "";
 	
 	var tbody = document.getElementsByTagName('tbody')[0];
-
 	// clear my tbody
 	tbody.innerHTML = "";
+
 	// add new content
 	for (var i = 0; i < arrayContacts.length; i++) { 
 		row += "<tr id='montr_" + i + "'>";
@@ -61,9 +61,8 @@ function refrechList() {
 	// hide label tel et email
 	document.getElementById('infoTel').style.display="none";
 	document.getElementById('infoEmail').style.display="none";
-	
-	
 	return false;
+	
 }
 
 //favoris
@@ -72,7 +71,7 @@ function mettreEnFavoris(param_index) {
 	// INsertion
 	var objectToInsert = arrayContacts[param_index];
 	arrayFavContacts.push(objectToInsert); 
-		
+	
 	// Sppression du bouton
 	document.getElementById("btnFav_" + param_index).remove();
 	 
@@ -82,6 +81,7 @@ function mettreEnFavoris(param_index) {
 	  document.getElementById('msgSuccessFavoris').style.display="none";
 	},3000);
 	
+	setFavStorage();
 	return false;
 }
 
@@ -120,7 +120,7 @@ function supprimerFavoris(param_index) {
 		// suppression du html
 		monTrFav.remove();
 	}
-	
+	setFavStorage();
 	// compteur element
 	document.getElementById('nbrFavoris').innerHTML = arrayFavContacts.length;
 	return false;
@@ -145,9 +145,8 @@ function supprimerContact(param_index) {
 	// refrech de la liste des contacts
 	refrechList();
 	
-
 	// mettre le storage à jour	
-	setStorage();
+	setStorageContact();
 	
 	
 	return false;
@@ -248,14 +247,26 @@ function clearInputs(){
 	document.getElementById('email').value="";	
 }
 
-// Fonction récupération storage session
-function loadStorage() {
+// Fonction récupération storage contact session
+function getStorageContact() {
 	var contactText = sessionStorage.getItem("arrayContacts");
 	arrayContacts = JSON.parse(contactText);
 }
-
-// Fonction alimentation storage
-function setStorage() {
+// Fonction alimentation contact storage
+function setStorageContact() {
 	var contactsText = JSON.stringify(arrayContacts);
 	sessionStorage.setItem("arrayContacts", contactsText);
+}
+	
+
+// Fonction récupération storage favoris session
+function getStorageFav() {
+	var favorisText = sessionStorage.getItem("arrayFavContacts");
+	arrayFavContacts = JSON.parse(favorisText);
+	
+}
+// Fonction alimentation favoris storage
+function setFavStorage() {
+	var favText = JSON.stringify(arrayFavContacts);
+	sessionStorage.setItem("arrayFavContacts", favText);
 }
