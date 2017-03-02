@@ -8,9 +8,9 @@ var arrayFavContacts = [];
 window.onload = function(){
 	
 	getStorageContact();
-	refrechList(); 	
 	getStorageFav();
-	showPanel(2);
+	refrechList(); 	
+	panelActive(2);
 };
 
 
@@ -26,17 +26,17 @@ document.getElementById('ajouter').onclick = function () {
 	var email = document.getElementById('email').value;
 	var erreur = 0;
 	
-	if(nom === "") {
+	if(!nom) {
 		document.getElementById('erreurNom').style.display="block";
 		erreur = 1;
 	}
 	
-	if(prenom === "") {
+	if(!prenom) {
 		document.getElementById('erreurPrenom').style.display="block";
 		erreur = 1;
 	}
 	
-	if(email === "") {
+	if(!email) {
 		document.getElementById('erreurEmail').style.display="block";
 		erreur = 1;
 	}else{
@@ -48,7 +48,7 @@ document.getElementById('ajouter').onclick = function () {
 		}
 	}
 	
-	if(telephone === "") {
+	if(!telephone) {
 		document.getElementById('erreurTel').style.display="block";
 		erreur = 1;
 	}else{
@@ -95,16 +95,17 @@ document.getElementById('ajouter').onclick = function () {
 //linkAjoutContact
 document.getElementById('linkAjoutContact').onclick = function(){
 	panelActive(1);
-	showPanel(1);
+
 	return false;
 };
+
 
 //linkContact
 document.getElementById('linkContact').onclick = function(){
 	panelActive(2);
 		getStorageFav();
 	refrechList();
-	showPanel(2);
+
 
 	return false;
 };
@@ -116,7 +117,6 @@ document.getElementById('linkFav').onclick = function(){
 	if(arrayFavContacts.length){
 		document.getElementById('aucunFav').innerHTML="";
 		document.getElementsByTagName('thead')[1].style.display="";
-		showPanel(3);
 
 	}else{
 		document.getElementById('favoris').style.display="block";

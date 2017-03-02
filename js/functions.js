@@ -23,7 +23,7 @@ function refrechList() {
 	var tbody = document.getElementsByTagName('tbody')[0];
 	// clear my tbody
 	tbody.innerHTML = "";
-
+console.log(arrayContacts);
 	// add new content
 	for (var i = 0; i < arrayContacts.length; i++) { 
 		row += "<tr id='montr_" + i + "'>";
@@ -80,7 +80,7 @@ function mettreEnFavoris(param_index) {
 	setTimeout(function() {
 	  document.getElementById('msgSuccessFavoris').style.display="none";
 	},3000);
-	
+
 	setFavStorage();
 	return false;
 }
@@ -186,50 +186,35 @@ function panelActive(panelAct) {
 	var	lstFavorisActive = document.getElementById('btnActiveFavoris');
 	switch(panelAct) {
 		case 1:
-			if(!ajoutContactActive.classList.contains("active")){
 				document.getElementById('btnActiveAjContact').classList.add("active");
 				document.getElementById('btnActiveContact').classList.remove("active");
 				document.getElementById('btnActiveFavoris').classList.remove("active");
-			}
+				document.getElementById('favoris').style.display="none";
+				document.getElementById('ajoutContact').style.display="block";
+				document.getElementById('contacts').style.display="none";
+
 			break;
 		case 2:
-			if(!lstContactActive.classList.contains("active")){
 				document.getElementById('btnActiveContact').classList.add("active");
 				document.getElementById('btnActiveAjContact').classList.remove("active");
 				document.getElementById('btnActiveFavoris').classList.remove("active");
-			}
+				document.getElementById('favoris').style.display="none";
+				document.getElementById('ajoutContact').style.display="none";
+				document.getElementById('contacts').style.display="block";
 			break;
 		case 3:
-			if(!lstFavorisActive.classList.contains("active")){
 				document.getElementById('btnActiveFavoris').classList.add("active");
 				document.getElementById('btnActiveContact').classList.remove("active");
 				document.getElementById('btnActiveAjContact').classList.remove("active");
-			}
+				document.getElementById('favoris').style.display="block";
+				document.getElementById('ajoutContact').style.display="none";
+				document.getElementById('contacts').style.display="none";	
+
 			break;			
 	}
 }
 
-// Fonction affichage panels
-function showPanel(numPanel){
-	switch(numPanel) {
-		case 1:
-			document.getElementById('favoris').style.display="none";
-			document.getElementById('ajoutContact').style.display="block";
-			document.getElementById('contacts').style.display="none";
-			break;
-		case 2:
-			document.getElementById('favoris').style.display="none";
-			document.getElementById('ajoutContact').style.display="none";
-			document.getElementById('contacts').style.display="block";
-			break;
-		case 3:
-			document.getElementById('favoris').style.display="block";
-			document.getElementById('ajoutContact').style.display="none";
-			document.getElementById('contacts').style.display="none";		
-			break;			
-		
-	}
-}
+
 
 // Fonction efface toutes les erreurs du formulaire
 function cleanErrors(){
@@ -258,7 +243,6 @@ function setStorageContact() {
 	sessionStorage.setItem("arrayContacts", contactsText);
 }
 	
-
 // Fonction récupération storage favoris session
 function getStorageFav() {
 	var favorisText = sessionStorage.getItem("arrayFavContacts");
